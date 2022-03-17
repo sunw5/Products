@@ -1,0 +1,38 @@
+
+<!-- {{ productList$ | async | json }} -->
+<div class="row justify-content-center">
+  <div class="col-10">
+    <button [routerLink]="['/', 'product-editor', 0]" class="btn btn-success">New</button>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <!-- {"id":1,"name":"Fanta","price":2000,"category":"drink"} -->
+          <th>Id</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of productList$ | async " >
+          <td>{{product.id}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.price}}</td>
+          <td>{{product.category}}</td>
+          <td>
+            <div class="btn-group">
+              <button [routerLink]="['/', 'product-editor', product.id]" class="btn btn-warning">
+              <!-- <button routerLink="/product-editor/{{ product.id }}" class="btn btn-warning"> -->
+                <i class="fa fa-pencil"></i>
+              </button>
+              <button (click)="onDelete(product)" class="btn btn-danger">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
